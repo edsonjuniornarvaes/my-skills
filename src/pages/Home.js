@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TextInput,
   Platform,
-  Flatlist,
   FlatList,
 } from "react-native";
 import { Button } from "../components/Button";
@@ -21,34 +20,17 @@ export function Home() {
   }
 
   useEffect(() => {
-    console.log("useEffect");
     const currentHour = new Date().getHours();
 
     if (currentHour < 12) {
       setGreeting("Good morning");
     } else if (currentHour >= 12 && currentHour < 18) {
       setGreeting("Good afternoon");
+    } else {
+      setGreeting("Good night");
     }
   }, [mySkills]);
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome, Edson</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="New skill"
-        placeholderTextColor="#555"
-        onChangeText={setNewSkill}
-      />
-      <Button onPress={handleAddNewSkill} />
-      <Text style={[styles.title, { marginVertical: 50 }]}>My Skills</Text>
-      <FlatList
-        data={mySkills}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => <SkillCard skill={item} />}
-      />
-    </View>
-  );
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome, Edson</Text>
